@@ -1,0 +1,11 @@
+<%= form_with model: @task, local: false, data: data_attributes, class: "row align-items-center" do |form| %>
+  <div data-request-target="error">
+    <%= render partial: "layouts/form_errors", locals: { object: form.object } if form.object.errors.any? %>
+  </div>
+  <div class="col-9">
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+  <div class="col-3">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

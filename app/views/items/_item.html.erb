@@ -1,0 +1,14 @@
+<% unless item.new_record? %>
+  <li class="list-group-item list-group-item d-flex justify-content-between align-items-center" id="<%= dom_id(item) %>">
+    <div class="d-flex justify-content-between align-items-center">
+      <%= item.title %>
+      <%= button_to [item.task, item], class: "btn btn-link", method: :put, remote: true, params: { item: { complete: !item.complete } }, form: { data: { controller: "request", request_target_value: "##{dom_id(item)}", request_action_value: "replace" }  } do %>
+        <%= item.complete? ? "Mark as incomplete" : "Mark as complete" %>
+      <% end %>
+    </div>
+    <div>
+      <%= link_to "Edit", edit_task_item_path(item.task, item), class: "link-secondary", remote: true, data: { controller: "request", request_target_value: "##{dom_id(item)}", request_action_value: "update" } %> 
+      <%= link_to "Delete", task_item_path(item.task, item), class: "link-secondary", method: :delete, remote: true, data: { controller: "request", request_target_value: "##{dom_id(item)}", request_action_value: "remove" } %>  
+    </div>
+  </li>
+<% end %>

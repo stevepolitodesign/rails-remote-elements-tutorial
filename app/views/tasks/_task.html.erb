@@ -1,0 +1,7 @@
+<li class="list-group-item list-group-item d-flex justify-content-between align-items-center" id="<%= dom_id(task) %>">
+  <%= link_to task.title, task_path(task), class: "fs-5 link-dark", remote: true, data: { controller: "request", request_target_value: "#content", request_action_value: "update" } %>
+  <div>
+    <%= link_to "Edit", edit_task_path(task), class: "link-secondary", remote: true, data: { controller: "request", request_target_value: "##{dom_id(task)}", request_action_value: "update" } %>
+    <%= link_to "Delete", task_path(task), class: "link-secondary", method: :delete, remote: true, data: { controller: "request", request_target_value: "##{dom_id(task)}", request_action_value: "remove" } %>  
+  </div>
+</li>

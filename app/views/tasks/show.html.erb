@@ -1,0 +1,12 @@
+<%= link_to "Back to Tasks", tasks_path, remote: true, data: { controller: "request", request_target_value: "#content", request_action_value: "update" } %>
+<h1><%= @task.title %></h1>
+<div class="mb-4">
+  <%= render partial: "items/form", locals: { object: [@task, @task.items.build], data_attributes: @new_item_data_attributes } %>
+</div>
+<div class="row gx-2">
+  <%= button_to "Mark All As Complete", mark_all_as_complete_task_items_path(@task), method: :put, remote: true, form_class: "col-4", class: "btn btn-sm btn-outline-secondary", form: { data: { controller: "request", request_target_value: "#items-container", request_action_value: "update"  } }  %>
+  <%= button_to "Mark All As Incomplete", mark_all_as_incomplete_task_items_path(@task), method: :put, remote: true, form_class: "col-4", class: "btn btn-sm btn-outline-secondary", form: { data: { controller: "request", request_target_value: "#items-container", request_action_value: "update"  } }  %>
+</div>
+<div id="items-container">
+  <%= render partial: "items/items" %>
+</div>
