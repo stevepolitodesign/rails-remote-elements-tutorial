@@ -7,9 +7,9 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     if @task.save
-      render @task, layout: false
+      render @task
     else
-      render partial: "layouts/form_errors", locals: {object: @task}, status: :unprocessable_entity, layout: false
+      render partial: "layouts/form_errors", locals: {object: @task}, status: :unprocessable_entity
     end
   end
 
@@ -34,9 +34,9 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      render @task, layout: false
+      render @task
     else
-      render partial: "layouts/form_errors", locals: {object: @task}, status: :unprocessable_entity, layout: false
+      render partial: "layouts/form_errors", locals: {object: @task}, status: :unprocessable_entity
     end
   end
 

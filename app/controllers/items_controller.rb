@@ -6,9 +6,9 @@ class ItemsController < ApplicationController
   def create
     @item = @task.items.build(item_params)
     if @item.save
-      render @item, layout: false
+      render @item
     else
-      render partial: "layouts/form_errors", locals: {object: @item}, status: :unprocessable_entity, layout: false
+      render partial: "layouts/form_errors", locals: {object: @item}, status: :unprocessable_entity
     end
   end
 
@@ -34,9 +34,9 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      render @item, layout: false
+      render @item
     else
-      render partial: "layouts/form_errors", locals: {object: @item}, status: :unprocessable_entity, layout: false
+      render partial: "layouts/form_errors", locals: {object: @item}, status: :unprocessable_entity
     end
   end
 
