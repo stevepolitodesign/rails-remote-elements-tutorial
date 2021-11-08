@@ -9,16 +9,16 @@ class TasksController < ApplicationController
     if @task.save
       render @task, layout: false
     else
-      render partial: "layouts/form_errors", locals: { object: @task }, status: :unprocessable_entity, layout: false
+      render partial: "layouts/form_errors", locals: {object: @task}, status: :unprocessable_entity, layout: false
     end
   end
-  
+
   def destroy
     @task.destroy
   end
 
   def edit
-    render partial: "form", locals: { data_attributes: @edit_task_data_attributes }
+    render partial: "form", locals: {data_attributes: @edit_task_data_attributes}
   end
 
   def index
@@ -36,7 +36,7 @@ class TasksController < ApplicationController
     if @task.update(task_params)
       render @task, layout: false
     else
-      render partial: "layouts/form_errors", locals: { object: @task }, status: :unprocessable_entity, layout: false
+      render partial: "layouts/form_errors", locals: {object: @task}, status: :unprocessable_entity, layout: false
     end
   end
 
@@ -48,7 +48,7 @@ class TasksController < ApplicationController
       request_target: "form",
       request_target_value: "#items",
       request_action_value: "afterbegin"
-     }    
+    }
   end
 
   def set_new_task_data_attributes
@@ -57,7 +57,7 @@ class TasksController < ApplicationController
       request_target: "form",
       request_target_value: "#tasks",
       request_action_value: "afterbegin"
-     }    
+    }
   end
 
   def set_edit_task_data_attributes
@@ -66,8 +66,8 @@ class TasksController < ApplicationController
       request_target: "form",
       request_target_value: "#task_#{@task.id}",
       request_action_value: "replace"
-     }    
-  end  
+    }
+  end
 
   def set_task
     @task = Task.find(params[:id])
