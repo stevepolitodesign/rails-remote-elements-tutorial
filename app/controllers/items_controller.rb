@@ -6,10 +6,10 @@ class ItemsController < ApplicationController
   def create
     @item = @task.items.build(item_params)
     if @item.save
-      render @item, layout: false
+      render @item
     else
-      render partial: "layouts/form_errors", locals: { object: @item }, status: :unprocessable_entity, layout: false
-    end    
+      render partial: "layouts/form_errors", locals: {object: @item}, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -17,7 +17,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    render partial: "form", locals: { object: [@task, @item] , data_attributes: @edit_item_data_attributes }
+    render partial: "form", locals: {object: [@task, @item], data_attributes: @edit_item_data_attributes}
   end
 
   def mark_all_as_complete
@@ -30,13 +30,13 @@ class ItemsController < ApplicationController
     @items = @task.items.order(created_at: :desc)
     @items.update_all(complete: false)
     render partial: "items"
-  end  
+  end
 
   def update
     if @item.update(item_params)
-      render @item, layout: false
+      render @item
     else
-      render partial: "layouts/form_errors", locals: { object: @item }, status: :unprocessable_entity, layout: false
+      render partial: "layouts/form_errors", locals: {object: @item}, status: :unprocessable_entity
     end
   end
 
