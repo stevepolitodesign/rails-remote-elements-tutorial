@@ -1,17 +1,17 @@
 import { Controller } from "@hotwired/stimulus";
 
-// Connects to data-controller="form"
 export default class extends Controller {
-  static targets  = ["error", "form"];
-  static values   = { 
+  static targets = ["error", "form"];
+  static values = {
     target: String,
-    action: { type: String, default: "replace" } 
+    action: { type: String, default: "replace" },
   };
 
   connect() {
-    this.target   = this.hasTargetValue && document.querySelector(this.targetValue);
-    this.action   = this.hasActionValue && this.actionValue;
-    this.actions  = [
+    this.target =
+      this.hasTargetValue && document.querySelector(this.targetValue);
+    this.action = this.hasActionValue && this.actionValue;
+    this.actions = [
       "afterbegin",
       "afterend",
       "beforebegin",
@@ -30,7 +30,9 @@ export default class extends Controller {
 
   actionIsPermitted(action) {
     if (this.actions.indexOf(action) == -1) {
-      throw `data-request-action-value="${action}" is not one of ${this.actions.join(", ")}`;
+      throw `data-request-action-value="${action}" is not one of ${this.actions.join(
+        ", "
+      )}`;
     } else {
       return true;
     }
@@ -55,11 +57,12 @@ export default class extends Controller {
 
     this.clearErrors();
     this.clearForm();
-    this.actionIsPermitted(this.action) && this.updateTarget(this.action, response);
+    this.actionIsPermitted(this.action) &&
+      this.updateTarget(this.action, response);
   }
 
   updateTarget(action, response) {
-    switch(action) {
+    switch (action) {
       case "remove":
         this.target.remove();
         break;
@@ -67,7 +70,7 @@ export default class extends Controller {
         const parser = new DOMParser();
         const doc = parser.parseFromString(response, "text/html");
         this.target.replaceWith(doc.body.firstChild);
-        break;        
+        break;
       case "update":
         this.target.innerHTML = response;
         break;
