@@ -98,6 +98,7 @@ export default class extends Controller {
 > - Since a request can come from a button, link, or form we need to conditionally handle rendering errors and clearing form data via `this.clearErrors()` and `this.clearForm()`. 
 
 ### Remote Element Markup
+
 #### Forms
 
 ```html+ruby
